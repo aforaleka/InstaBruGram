@@ -1,0 +1,19 @@
+<div class="col-md-6 col-md-offset-3 text-center">
+<h1>BruGram</h1>
+<h3>
+	<%= link_to 'Add a Memory', new_photo_path %>
+</h3>
+
+<% @photos.each do |photo| %>
+	<div class="photo">
+	<p><strong><%= photo.user.email %></strong> at <%= photo.created_at %></p>
+	<%= image_tag photo.image %>
+	<br>
+
+	
+	<p><%= photo.caption %></p>
+	<%= link_to 'show', photo %>
+	</div>
+<% end %>
+</div>
+

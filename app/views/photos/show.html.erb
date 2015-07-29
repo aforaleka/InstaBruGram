@@ -1,0 +1,36 @@
+<div class="col-md-8 col-md-offset-2">
+
+<h1><%= @photo.user.email %></h1>
+
+<img src="<%= @photo.image %>">
+<br>
+<%= link_to 'like', like_photo_path, class: "btn btn-default inline" %>
+<%= @photo.likes %>
+<br>
+
+<p class="caption"><%= @photo.caption %></p>
+
+
+<div class="nav">
+<%= link_to 'back', photos_path %>
+<%= link_to 'edit', edit_photo_path %>
+<%= link_to 'delete', photo_path, method: :delete %>
+</div>
+<br>
+<br>
+
+
+<div class="comments">
+<h3>Comments</h3>
+<% @photo.comments.each do |cm| %>
+	<p>
+	<%= cm.text %>
+	</p>
+<% end %>
+
+<h5>Add a Comment</h5>
+<%= render 'comments/form' %><br>
+</div>
+
+
+</div>
