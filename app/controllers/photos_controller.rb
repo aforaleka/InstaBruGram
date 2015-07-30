@@ -1,7 +1,7 @@
 class PhotosController < ApplicationController
 
   def index
-  	@photos = Photo.all.sort_by{|e| e[:created_at]}.reverse!
+  	@photos = Photo.all.order(created_at: :desc)
   	Photo.where(public: false).each do |photo|
   		if photo.user != current_user
   			@photos = @photos - [photo]
@@ -16,8 +16,9 @@ class PhotosController < ApplicationController
   #     end
   #   @photos = @photos.sort_by{|e| e[:created_at]}.reverse!
   #   end
+
   def mine
-  	@photos = current_user.photos.sort_by{|e| e[:created_at]}.reverse!
+  	@photos = current_user.photos.order(created_at: :desc)
   end
 
   def new
@@ -50,10 +51,7 @@ class PhotosController < ApplicationController
 
   def edit
     @photo = Photo.find params[:id]
-    if @photo.user != current_user
-    	redirect_to photo_path, alert: "invalid permissions"
-    end
-    render 'edit'
+    verify_photo_owner
   end
 
   def update
@@ -79,6 +77,12 @@ class PhotosController < ApplicationController
 
 
   private
+
+    def verify_photo_owner
+      if @photo.user != current_user
+        redirect_to photos_path
+      end
+    end
 
     def photo_params
       params.require(:photo).permit(:public, :caption, :image)
