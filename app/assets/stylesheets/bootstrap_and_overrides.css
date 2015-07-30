@@ -9,29 +9,35 @@
   body {
   	padding: 10px;
     background-color: #F5F5F5;
+    font-family: 'News Cycle';
 
+  }
+
+  .title, .index-nav, .nav {
+    color: #323299;
   }
 
   .title-container {
     margin: 30px 0;
     font-family: 'Satisfy';
   }
-
-  .index-nav {
-
-  }
   
   .nav {
     font-size: 30px;
-
   }
 
   a {
     font-family: 'Satisfy';
     font-size: larger;
     transition: 0.5s;
+    color: #6666b2;
   }
+
   
+  .caption {
+    font-size: 22px;
+  }
+
   img {
     width: 555px;
     margin-bottom: 5px;

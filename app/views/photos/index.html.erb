@@ -3,11 +3,11 @@
 <div class="index-feed">
 
 <div class="title-container">
-<h1 class="title">InstaBruGram</h1>
+<h1>InstaBruGram</h1>
 
-<h3 class="index-nav">
+<h3>
 	<% if current_user %>
-		<%= link_to 'My Photos', photos_myphotos_path %> | <%= link_to 'Add a Memory', new_photo_path %>
+		<%= link_to 'My Photos', photos_myphotos_path, class: "index-nav" %> | <%= link_to 'Add a Memory', new_photo_path, class: "index-nav" %>
 	<% end %>
 </h3>
 </div>

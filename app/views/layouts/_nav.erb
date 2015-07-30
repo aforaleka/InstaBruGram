@@ -1,4 +1,4 @@
-<class="title"><%= link_to "InstaBruGram", photos_path %> </class="title">
+<%= link_to "InstaBruGram", photos_path, class: "title" %>
 
 <% if user_signed_in? %>
   Logged in as <strong><%= current_user.email %></strong>.

@@ -16,10 +16,8 @@
 
 <p class="caption"><%= @photo.caption %></p>
 
+<%= link_to 'back', photos_path, class: "nav" %>
 
-<div class="nav">
-<%= link_to 'back', photos_path %>
-</div>
 <br>
 <br>
 
@@ -37,12 +35,13 @@
 <br>
 <p><strong>Add a Comment</strong> 
 <% if current_user %>
-	(posting as <em><%= current_user.email %>)</em>
+	(posting as <em><%= current_user.email %>)</em></p>
+	<%= render 'comments/form' %><br>
 <% else %>
-	(you have to sign in first)
+	(you have to sign in first)</p>
 <% end %>
-</p>
-<%= render 'comments/form' %><br>
+
+
 
 
 </div>
