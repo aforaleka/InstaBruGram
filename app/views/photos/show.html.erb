@@ -1,7 +1,12 @@
 <div class="col-md-8 col-md-offset-2">
 
 <h1><%= @photo.user.email %></h1>
-<p>at <%= @photo.created_at %></p>
+<p>at <%= @photo.created_at %> 
+<% if @photo.user == current_user %>
+	<%= link_to 'edit', edit_photo_path %> | 
+	<%= link_to 'delete', photo_path, method: :delete %>
+<% end %>
+</p>
 
 <img src="<%= @photo.image %>">
 <br>
@@ -14,8 +19,6 @@
 
 <div class="nav">
 <%= link_to 'back', photos_path %>
-<%= link_to 'edit', edit_photo_path %>
-<%= link_to 'delete', photo_path, method: :delete %>
 </div>
 <br>
 <br>
@@ -25,12 +28,23 @@
 <h3>Comments</h3>
 <% @photo.comments.each do |cm| %>
 	<p>
-	<%= cm.user %>: <%= cm.text %>
+	<strong><%= cm.user.email %></strong>: <%= cm.text %>
+	<% if cm.user == current_user %>
+		<%= link_to 'delete', [cm.photo, cm], method: :delete %>
+	<% end %>
 	</p>
 <% end %>
-
-<h5>Add a Comment</h5>
+<br>
+<p><strong>Add a Comment</strong> 
+<% if current_user %>
+	(posting as <em><%= current_user.email %>)</em>
+<% else %>
+	(you have to sign in first)
+<% end %>
+</p>
 <%= render 'comments/form' %><br>
+
+
 </div>
 
 

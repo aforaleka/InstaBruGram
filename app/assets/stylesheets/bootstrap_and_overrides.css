@@ -9,20 +9,49 @@
   body {
   	padding: 10px;
     background-color: #F5F5F5;
+
+  }
+
+  .title-container {
+    margin: 30px 0;
+    font-family: 'Satisfy';
+  }
+
+  .index-nav {
+
+  }
+  
+  .nav {
+    font-size: 30px;
+
+  }
+
+  a {
+    font-family: 'Satisfy';
+    font-size: larger;
+    transition: 0.5s;
   }
   
   img {
     width: 555px;
-  	margin-bottom: 10px;
+    margin-bottom: 5px;
   }
 
-  .photo {
-   
+  .photo-container {
     background-color: white;
-    padding: 14px 0;
+    padding: 14px 0 2px 0;
   }
 
-.feed {
-	width: 555px;
-  	margin: 10px 0 40px 0;
-}
+  .index-feed {
+    width: 555px;
+    margin: 10px auto;
+  }
+
+  .my-image {
+    width: 300px;
+  }
+
+  .my-feed {
+    max-width: 960px;
+    margin: 0 auto;
+  }

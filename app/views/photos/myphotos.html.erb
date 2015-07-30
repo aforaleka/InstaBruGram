@@ -1,0 +1,18 @@
+<div class="row">
+<div class="my-feed text-center">
+
+<div class="title-container">
+<h1 class="title">My Photos</h1>
+</div>
+
+<% @photos.each do |photo| %>
+	<div class="col-md-4">
+	<%= image_tag photo.image, class: "my-image" %>
+	<br>
+	<p>at <%= photo.created_at %>  <%= photo.likes %> likes</p>
+	<p><%= photo.caption %> <%= link_to 'show', photo %></p>
+	</div>
+<% end %>
+</div>
+</div>
+

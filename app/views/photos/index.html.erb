@@ -1,20 +1,28 @@
-<div class="col-md-6 col-md-offset-3 text-center">
-<div class="feed">
-<h1>BruGram</h1>
-<h3>
-	<%= link_to 'Add a Memory', new_photo_path %>
+<div class="row">
+<div class="col-md-8 col-md-offset-2 text-center">
+<div class="index-feed">
+
+<div class="title-container">
+<h1 class="title">InstaBruGram</h1>
+
+<h3 class="index-nav">
+	<% if current_user %>
+		<%= link_to 'My Photos', photos_myphotos_path %> | <%= link_to 'Add a Memory', new_photo_path %>
+	<% end %>
 </h3>
+</div>
 
 <% @photos.each do |photo| %>
-	<div class="photo">
-	<p><strong><%= photo.user.email %></strong> at <%= photo.created_at %></p>
-	<%= image_tag photo.image %>
+	<div class="photo-container">
+	<p><strong><%= photo.user.email %></strong> at <%= photo.created_at %>	<%= link_to 'show', photo %> </p>
+	<%= image_tag photo.image, class: "image-main" %>
 	<br>
-
 	<p> <%= photo.likes %> likes</p>
 	<p><%= photo.caption %></p>
-	<%= link_to 'show', photo %>
 	</div>
+	<br>
 <% end %>
 </div>
+</div>
+
 </div>

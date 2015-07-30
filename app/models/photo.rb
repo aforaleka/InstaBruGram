@@ -1,6 +1,6 @@
 class Photo < ActiveRecord::Base
-	belongs_to :user, dependent: :destroy
-	has_many :comments
+	belongs_to :user
+	has_many :comments, dependent: :destroy
 	validates :image, presence: true
 
    	def liked!

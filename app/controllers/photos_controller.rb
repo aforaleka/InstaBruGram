@@ -1,5 +1,6 @@
 class PhotosController < ApplicationController
-
+  before_action :authenticate_user!, except: [:index, :show]
+  
   def index
   	@photos = Photo.all.order(created_at: :desc)
   	Photo.where(public: false).each do |photo|
@@ -8,16 +9,8 @@ class PhotosController < ApplicationController
   		end
   	end
   end
-  	#user photos = current_user.photos
- 	# @photos = Photo.where(public: true)
-  #   Photo.where(public: false).each do |photo|
-  #     if photo.user == current_user
-  #       @photos = @photos + [photo]
-  #     end
-  #   @photos = @photos.sort_by{|e| e[:created_at]}.reverse!
-  #   end
 
-  def mine
+  def myphotos
   	@photos = current_user.photos.order(created_at: :desc)
   end
 
@@ -47,6 +40,10 @@ class PhotosController < ApplicationController
 
   def show
     @photo = Photo.find params[:id]
+    if (@photo.user != current_user) && (@photo.public == false)
+      redirect_to photos_path
+    end
+
   end
 
   def edit
@@ -65,13 +62,14 @@ class PhotosController < ApplicationController
 
   def destroy
     @photo = Photo.find params[:id]
-    if @photo.user == current_user
+
+    if @photo.user != current_user
+        redirect_to photo_path
+        flash.alert = "Invalid Permissions"
+    else 
       @photo.destroy
       redirect_to photos_path
       flash.notice = "Photo successfully deleted"
-    else
-      redirect_to photo_path
-      flash.alert = "Invalid Permissions"
     end
   end
 
@@ -80,7 +78,8 @@ class PhotosController < ApplicationController
 
     def verify_photo_owner
       if @photo.user != current_user
-        redirect_to photos_path
+        redirect_to photo_path
+        flash.alert = "Invalid Permissions"
       end
     end
 
